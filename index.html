@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal HIT SHOPING</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-gold: #D4AF37;
+      --bg-white: #F4F4F5; /* zinc-100 */
+      --text-dark: #18181B; /* zinc-900 */
+      --gold-glow: rgba(212, 175, 55, 0.3);
+      --glass-bg: rgba(24, 24, 27, 0.03);
+      --cyan-highlight: #06b6d4; /* Restored Cyan */
+      --green-highlight: #22c55e;
+      --yellow-highlight: #eab308;
+    }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: #F4F4F5;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .text-cyan-highlight { color: var(--cyan-highlight); }
+    .text-green-highlight { color: var(--green-highlight); }
+    .text-yellow-highlight { color: var(--yellow-highlight); }
+    .bg-cyan-highlight { background-color: var(--cyan-highlight); }
+    .bg-green-highlight { background-color: var(--green-highlight); }
+    .bg-yellow-highlight { background-color: var(--yellow-highlight); }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .gold-text-glow {
+      color: var(--primary-gold);
+    }
+
+    /* 3D Logo Animation */
+    @keyframes rotate3dLogo {
+      0% { transform: perspective(1000px) rotateY(0deg); }
+      50% { transform: perspective(1000px) rotateY(20deg) scale(1.05); }
+      100% { transform: perspective(1000px) rotateY(0deg); }
+    }
+    .animate-logo-3d {
+      animation: rotate3dLogo 4s ease-in-out infinite;
+    }
+
+    /* All Category Glow - Ultra Glowing Lighting Effect */
+    .category-item-glow {
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.15), inset 0 0 10px rgba(6, 182, 212, 0.05);
+      border-color: rgba(6, 182, 212, 0.2);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .category-item-glow::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: inherit;
+      background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: -1;
+      filter: blur(8px);
+    }
+    .category-item-glow:hover, .category-item-glow.active {
+      box-shadow: 0 0 35px rgba(6, 182, 212, 0.6), 0 0 70px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.2);
+      border-color: var(--cyan-highlight);
+      transform: translateY(-10px) scale(1.1);
+      background: #ffffff;
+    }
+    .category-item-glow:hover::after, .category-item-glow.active::after {
+      opacity: 1;
+      animation: rotateGlow 2.5s linear infinite;
+    }
+    
+    @keyframes breathingGlow {
+      0%, 100% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), inset 0 0 15px rgba(6, 182, 212, 0.1); }
+      50% { box-shadow: 0 0 50px rgba(6, 182, 212, 0.8), inset 0 0 25px rgba(6, 182, 212, 0.3); }
+    }
+    .category-item-glow.active {
+      animation: breathingGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+      100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+    }
+
+    /* Performance Tweak: Simple Floating */
+    @keyframes floatSimple {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: floatSimple 5s ease-in-out infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--deep-navy); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-gold); border-radius: 10px; }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .cinematic-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 25s linear infinite;
+    }
+
+    @keyframes gradient-x {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .animate-gradient-x {
+      animation: gradient-x 3s ease infinite;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

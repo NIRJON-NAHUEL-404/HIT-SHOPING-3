@@ -1,0 +1,190 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product in the store",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "sku": { "type": "string" },
+        "stock": { "type": "number" },
+        "category": { "type": "string" },
+        "subcategory": { "type": "string" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "flashSaleExpiry": { "type": "number" },
+        "variations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "size": { "type": "string" },
+              "color": { "type": "string" },
+              "stock": { "type": "number" }
+            }
+          }
+        },
+        "rating": { "type": "number" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reviewScreenshots": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["id", "name", "price", "category", "image", "description"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "total": { "type": "number" },
+        "deliveryCharge": { "type": "number" },
+        "status": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "shippingDetails": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "phone": { "type": "string" },
+            "whatsapp": { "type": "string" },
+            "transactionId": { "type": "string" },
+            "paymentScreenshot": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "items", "total", "status", "paymentMethod", "shippingDetails", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "notifications": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "wishlist": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "role": { "type": "string" }
+      },
+      "required": ["id", "email", "name"]
+    },
+    "CategoryDef": {
+      "title": "CategoryDef",
+      "description": "A product category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "parentId": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "A discount coupon",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "discountPercentage": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["code", "discountPercentage", "isActive"]
+    },
+    "Banner": {
+      "title": "Banner",
+      "description": "A promotional banner",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "link": { "type": "string" }
+      },
+      "required": ["id", "imageUrl"]
+    },
+    "GeneralSettings": {
+      "title": "GeneralSettings",
+      "description": "General site settings",
+      "type": "object",
+      "properties": {
+        "shippingRates": {
+          "type": "object",
+          "properties": {
+            "insideDhaka": { "type": "number" },
+            "outsideDhaka": { "type": "number" }
+          }
+        },
+        "paymentNumber": { "type": "string" },
+        "announcements": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "siteSettings": {
+          "type": "object",
+          "properties": {
+            "logoUrl": { "type": "string" },
+            "logoName": { "type": "string" },
+            "footerCopyright": { "type": "string" },
+            "contactNumber": { "type": "string" },
+            "facebookUrl": { "type": "string" },
+            "instagramUrl": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Stores all products"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Stores all customer orders"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles"
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/CategoryDef" },
+      "description": "Stores product categories"
+    },
+    "/coupons/{couponId}": {
+      "schema": { "$ref": "#/entities/Coupon" },
+      "description": "Stores discount coupons"
+    },
+    "/banners/{bannerId}": {
+      "schema": { "$ref": "#/entities/Banner" },
+      "description": "Stores promotional banners"
+    },
+    "/settings/general": {
+      "schema": { "$ref": "#/entities/GeneralSettings" },
+      "description": "Stores general site settings"
+    }
+  }
+}
